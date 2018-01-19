@@ -60,8 +60,6 @@ You must also add the following lines to the bottom of the local.conf file
 ```
 KERNEL_IMAGETYPES_append = " fitImage"
 KERNEL_CLASSES += "kernel-fitimage"
-
-PREFERRED_PROVIDER_u-boot = "u-boot-xlnx"
 ```
 
 It is now possible to run `bitbake <desired image>` to build an image. A good,

@@ -10,7 +10,7 @@ COMPATIBLE_MACHINE = "syzygy-hub"
 PROVIDES = "virtual/bitstream"
 
 SRC_URI = "git://github.com/SYZYGYfpga/syzygy-hub-helloworld.git;protocol=https;nobranch=1"
-SRCREV = "1343f0d916fd2d43ff4fc77fd842d4739f156c5a"
+SRCREV = "2de5a351337c9c09d2ec05ccdc74b6c0b78a9e1d"
 
 PV = "+git${SRCPV}"
 

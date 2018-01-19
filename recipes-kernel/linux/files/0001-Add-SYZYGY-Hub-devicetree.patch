@@ -1,4 +1,4 @@
-From 07a1d135a64abdf46c41732ae37b8705ccbec59b Mon Sep 17 00:00:00 2001
+From 23f81cf031aa0a23d437eee48bf647242b5a716b Mon Sep 17 00:00:00 2001
 From: Tom McLeod <tom.mcleod@opalkelly.com>
 Date: Thu, 7 Sep 2017 14:15:21 -0700
 Subject: [PATCH] Add SYZYGY Hub devicetree
@@ -6,8 +6,8 @@ Subject: [PATCH] Add SYZYGY Hub devicetree
 Signed-off-by: Tom McLeod <tom.mcleod@opalkelly.com>
 ---
  arch/arm/boot/dts/Makefile            |  1 +
- arch/arm/boot/dts/zynq-syzygy-hub.dts | 72 +++++++++++++++++++++++++++++++++++
- 2 files changed, 73 insertions(+)
+ arch/arm/boot/dts/zynq-syzygy-hub.dts | 76 +++++++++++++++++++++++++++++++++++
+ 2 files changed, 77 insertions(+)
  create mode 100644 arch/arm/boot/dts/zynq-syzygy-hub.dts
 
 diff --git a/arch/arm/boot/dts/Makefile b/arch/arm/boot/dts/Makefile
@@ -24,10 +24,10 @@ index 8e06edc..d294f48 100644
  	zynq-zc770-xm010.dtb \
 diff --git a/arch/arm/boot/dts/zynq-syzygy-hub.dts b/arch/arm/boot/dts/zynq-syzygy-hub.dts
 new file mode 100644
-index 0000000..c98ef01
+index 0000000..614fd8b
 --- /dev/null
 +++ b/arch/arm/boot/dts/zynq-syzygy-hub.dts
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,76 @@
 +/*
 + * SYZYGY Hub DTS
 + *
@@ -51,7 +51,7 @@ index 0000000..c98ef01
 +
 +	memory@0 {
 +		device_type = "memory";
-+		reg = <0x0 0x40000000>;
++		reg = <0x0 0x3FB00000>;
 +	};
 +
 +	chosen {
@@ -82,6 +82,10 @@ index 0000000..c98ef01
 +};
 +
 +&i2c1 {
++	status = "okay";
++};
++
++&i2c0 {
 +	status = "okay";
 +};
 +

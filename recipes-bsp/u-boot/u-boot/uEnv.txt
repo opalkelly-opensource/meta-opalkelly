@@ -1,1 +1,2 @@
 bootargs=root=/dev/mmcblk0p2 rw rootwait
+fit_image=fitImage
