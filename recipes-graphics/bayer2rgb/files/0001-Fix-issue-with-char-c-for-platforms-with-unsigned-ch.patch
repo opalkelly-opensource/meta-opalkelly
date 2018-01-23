@@ -1,0 +1,25 @@
+From 96095108e707699f019cdc34da144fcd07e7e006 Mon Sep 17 00:00:00 2001
+From: Tom McLeod <tom.mcleod@opalkelly.com>
+Date: Sat, 20 Jan 2018 15:03:27 -0800
+Subject: [PATCH] Fix issue with char c for platforms with unsigned char
+
+---
+ bayer2rgb.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/bayer2rgb.c b/bayer2rgb.c
+index 8b707d0..15adb08 100644
+--- a/bayer2rgb.c
++++ b/bayer2rgb.c
+@@ -162,7 +162,7 @@ main( int argc, char ** argv )
+     int output_fd = 0;
+     void * bayer = NULL;
+     void * rgb = NULL, *rgb_start = NULL;
+-    char c;
++    int c;
+     int optidx = 0;
+     int swap = 0;
+ 
+-- 
+2.7.4
+
