@@ -1,0 +1,43 @@
+From 38243b75bdb139e67fb37803f4b1c5eecb441bfd Mon Sep 17 00:00:00 2001
+From: Tom McLeod <tom.mcleod@opalkelly.com>
+Date: Tue, 23 Jan 2018 09:58:40 -0800
+Subject: [PATCH] Comment out unused imports
+
+---
+ pynq/__init__.py | 18 +++++++++---------
+ 1 file changed, 9 insertions(+), 9 deletions(-)
+
+diff --git a/pynq/__init__.py b/pynq/__init__.py
+index c8c5eeb..098d814 100755
+--- a/pynq/__init__.py
++++ b/pynq/__init__.py
+@@ -31,17 +31,17 @@ from .gpio import GPIO
+ from .mmio import MMIO
+ from .ps import Register
+ from .ps import Clocks
+-from .pl import PL
+-from .pl import PL_SERVER_FILE
+-from .pl import Bitstream
++#from .pl import PL
++#from .pl import PL_SERVER_FILE
++#from .pl import Bitstream
+ from .ps import Register
+ from .ps import Clocks
+-from .interrupt import Interrupt
+-from .xlnk import Xlnk
+-from .overlay import Overlay
+-from .overlay import DefaultHierarchy
+-from .overlay import DefaultIP
+-from . import lib
++#from .interrupt import Interrupt
++#from .xlnk import Xlnk
++#from .overlay import Overlay
++#from .overlay import DefaultHierarchy
++#from .overlay import DefaultIP
++#from . import lib
+ 
+ 
+ __author__ = "Yun Rock Qu"
+-- 
+2.7.4
+
