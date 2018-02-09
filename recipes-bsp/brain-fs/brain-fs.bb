@@ -7,6 +7,8 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=126a99204a149adf7f2530603435b9aa"
 
 COMPATIBLE_MACHINE = "syzygy-hub"
 
+PROVIDES = "virtual/bitstream"
+
 SRC_URI = "git://github.com/SYZYGYfpga/brain-fs"
 SRCREV = "bd7e86e030c13f969ee9a8d0e3b46171e9d17ce1"
 
@@ -14,7 +16,7 @@ PV = "+git${SRCPV}"
 
 S = "${WORKDIR}/git"
 
-FILES_${PN} += "/home/root /home/root/*"
+FILES_${PN} += "/home/root /home/root/* boot/download.bit"
 
 RDEPENDS_${PN} = "python3-core"
 
@@ -41,5 +43,17 @@ do_install() {
 	chmod 755 ${D}/${ROOT_HOME}/brain-fs/camera/software/camera_regs.sh
 	chmod 755 ${D}/${ROOT_HOME}/brain-fs/camera/software/capture_continuous.sh
 	chmod 755 ${D}/${ROOT_HOME}/brain-fs/adc/software/capture_continuous.sh
+
+	install -d ${D}/boot
+	install ${S}/helloworld/syzygy-helloworld.bit ${D}/boot/download.bit
 }
+
+do_deploy () {
+	install -d ${DEPLOYDIR}
+	if [ -e ${D}/boot/download.bit ]; then
+		install ${D}/boot/download.bit ${DEPLOYDIR}/download.bit
+	fi
+}
+
+addtask deploy before do_build after do_install
 
