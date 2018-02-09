@@ -8,7 +8,7 @@ Supported Boards
 ================
 
 * Zynq:
-	* [SYZYGY Hub](http://www.syzygyfpga.io/hub) - 'syzygy-hub'
+	* [SYZYGY Brain-1](http://www.syzygyfpga.io/hub) - 'syzygy-brain-1'
 
 
 Dependencies
@@ -60,6 +60,8 @@ You must also add the following lines to the bottom of the local.conf file
 ```
 KERNEL_IMAGETYPES_append = " fitImage"
 KERNEL_CLASSES += "kernel-fitimage"
+
+UBOOT_BINARY = "u-boot.img"
 ```
 
 It is now possible to run `bitbake <desired image>` to build an image. A good,
@@ -73,11 +75,72 @@ wic create sdimage-bootpart -e <desired image>
 ```
 
 This will generate an SD card image which can be written to an SD card using
-either the dd command in Linux or a Windows disk imaging tool such as
-[Win32 Disk Imager](http://sourceforge.net/projects/win32diskimager/).
+either the dd command in Linux or a disk imaging tool such as
+[Etcher](https://www.etcher.io).
 
 Simply insert the SD card into the board and power it up to boot Linux.
 
 Progress can be viewed on a serial terminal.
 
 See the [Yocto Project](http://yoctoproject.org) website for more information.
+
+Opal Kelly Reference Image
+==========================
+
+The official Brain-1 image from Opal Kelly is more full featured than the
+minimal image provided by Yocto, including some text editors, a web server,
+python3 along with a number of python libraries, and more.
+
+To re-create the official image, add the following lines to the local.conf
+file:
+
+```
+# Testing tools
+CORE_IMAGE_EXTRA_INSTALL += "i2c-tools"
+CORE_IMAGE_EXTRA_INSTALL += "ethtool"
+#CORE_IMAGE_EXTRA_INSTALL += "iperf3"
+
+# Python
+CORE_IMAGE_EXTRA_INSTALL += "python3"
+CORE_IMAGE_EXTRA_INSTALL += "python3-dev"
+CORE_IMAGE_EXTRA_INSTALL += "python3-mmap"
+CORE_IMAGE_EXTRA_INSTALL += "python3-numpy"
+CORE_IMAGE_EXTRA_INSTALL += "python3-multiprocessing"
+CORE_IMAGE_EXTRA_INSTALL += "python3-asyncio"
+CORE_IMAGE_EXTRA_INSTALL += "python3-modules"
+CORE_IMAGE_EXTRA_INSTALL += "python3-setuptools"
+CORE_IMAGE_EXTRA_INSTALL += "pynq-minimal"
+
+# SYZYGY projects
+CORE_IMAGE_EXTRA_INSTALL += "brain-tools"
+CORE_IMAGE_EXTRA_INSTALL += "brain-fs"
+CORE_IMAGE_EXTRA_INSTALL += "brain-usb-eth"
+
+# WiFi tools
+CORE_IMAGE_EXTRA_INSTALL += "wpa-supplicant"
+CORE_IMAGE_EXTRA_INSTALL += "linux-firmware"
+
+# Camera tools
+CORE_IMAGE_EXTRA_INSTALL += "imagemagick"
+CORE_IMAGE_EXTRA_INSTALL += "bayer2rgb"
+
+# ADC tools
+CORE_IMAGE_EXTRA_INSTALL += "gnuplot"
+
+# General tools
+CORE_IMAGE_EXTRA_INSTALL += "lighttpd"
+CORE_IMAGE_EXTRA_INSTALL += "lighttpd-module-cgi"
+CORE_IMAGE_EXTRA_INSTALL += "git"
+CORE_IMAGE_EXTRA_INSTALL += "openssh"
+CORE_IMAGE_EXTRA_INSTALL += "vim"
+CORE_IMAGE_EXTRA_INSTALL += "vim-syntax"
+CORE_IMAGE_EXTRA_INSTALL += "vim-common"
+CORE_IMAGE_EXTRA_INSTALL += "vim-help"
+CORE_IMAGE_EXTRA_INSTALL += "vim-vimrc"
+CORE_IMAGE_EXTRA_INSTALL += "vim-tools"
+CORE_IMAGE_EXTRA_INSTALL += "nano"
+```
+
+The steps above to build the core-image-minimal image and SD card can now
+be performed to re-create the Opal Kelly reference image.
+
