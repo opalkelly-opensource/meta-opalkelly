@@ -8,7 +8,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=126a99204a149adf7f2530603435b9aa"
 COMPATIBLE_MACHINE = "syzygy-hub"
 
 SRC_URI = "git://github.com/SYZYGYfpga/brain-tools"
-SRCREV = "d114aae572edf75e0718a2ce1b74376e35f0dfe1"
+SRCREV = "35e7ed1543df580ee95284fa1ddd41b9394fc8fc"
 
 PV = "+git${SRCPV}"
 
@@ -29,7 +29,6 @@ do_compile () {
 do_install () {
 	install -d ${D}${bindir}
 	install -m 0755 ${S}/smartvio-brain ${D}${bindir}/smartvio
-	install -m 0755 ${S}/dna-writer ${D}${bindir}/dna-writer
 	install -m 0755 ${S}/szg_i2cread ${D}${bindir}/szg_i2cread
 	install -m 0755 ${S}/szg_i2cwrite ${D}${bindir}/szg_i2cwrite
 
